@@ -19,7 +19,7 @@ print(np.__version__) # Imprime la versión de numpy
 """
 
 model = keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
-model.compile(optimizer='sgd', loss="mean_squared_error",metrics=["accuracy"])
+model.compile(optimizer='sgd', loss="mean_squared_error", metrics=["accuracy"])
 
 """# Definir Xs y Ys
 
@@ -48,7 +48,7 @@ Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se pu
 """
 
 tiempo_inicial = time() 
-model.fit(x_training,y_training, epochs=5000,validation_data=(x_test, y_test))
+model.fit(x_training,y_training, epochs=50)
 tiempo_final = time() 
 tiempo_ejecucion = tiempo_final - tiempo_inicial
 print("Training time:{}".format(tiempo_ejecucion))
