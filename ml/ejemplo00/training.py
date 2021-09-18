@@ -5,6 +5,7 @@
 
 from tensorflow import keras
 import numpy as np
+import matplotlib.pyplot as plt
 from time import time
 
 print(keras.__version__) # Imprime la versión de keras
@@ -25,15 +26,21 @@ model.compile(optimizer='sgd', loss="mean_squared_error")
 En este ejemplo los datos de muestra se optienen de la funcion y = x * 2
 """
 
-xs = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
-ys = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
+xs = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
+ys = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
 
+plt.plot(xs,ys)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Demo')
+plt.savefig('foo.png')
+plt.show()
 
 """# Entrenamiento
 
 Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se puede ver que el valor de perdida es más cercano a 0.
 """
-
+'''
 tiempo_inicial = time() 
 model.fit(xs,ys, epochs=500)
 tiempo_final = time() 
@@ -45,3 +52,4 @@ Después de que se entreno el modelo, guardamos el modelo para usarlo despues
 """
 
 model.save("model.h5")
+'''
