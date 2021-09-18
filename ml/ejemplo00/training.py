@@ -19,15 +19,21 @@ print(np.__version__) # Imprime la versión de numpy
 """
 
 model = keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
-model.compile(optimizer='sgd', loss="mean_squared_error")
+model.compile(optimizer='sgd', loss="mean_squared_error",metrics=["accuracy"])
 
 """# Definir Xs y Ys
 
 En este ejemplo los datos de muestra se optienen de la funcion y = x * 2
 """
 
-xs = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
-ys = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
+xs = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
+ys = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
+
+x_training, x_test = xs[:8], xs[8:]
+y_training, y_test = ys[:8], ys[8:]
+
+print(x_training)
+print(x_test)
 
 plt.plot(xs,ys)
 plt.xlabel('x')
@@ -40,9 +46,9 @@ plt.show()
 
 Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se puede ver que el valor de perdida es más cercano a 0.
 """
-'''
+
 tiempo_inicial = time() 
-model.fit(xs,ys, epochs=500)
+model.fit(x_training,y_training, epochs=5000,validation_data=(x_test, y_test))
 tiempo_final = time() 
 tiempo_ejecucion = tiempo_final - tiempo_inicial
 print("Training time:{}".format(tiempo_ejecucion))
@@ -51,5 +57,7 @@ print("Training time:{}".format(tiempo_ejecucion))
 Después de que se entreno el modelo, guardamos el modelo para usarlo despues
 """
 
+results = model.evaluate(x_test, y_test,verbose=1,return_dict=True)
+print("test accuracy:{}".format(results))
+
 model.save("model.h5")
-'''
