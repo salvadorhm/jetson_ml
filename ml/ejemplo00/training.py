@@ -26,8 +26,8 @@ model.compile(optimizer='sgd', loss="mean_squared_error", metrics=["accuracy"])
 En este ejemplo los datos de muestra se optienen de la funcion y = x * 2
 """
 
-xs = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
-ys = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
+xs = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
+ys = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
 
 x_training, x_test = xs[:8], xs[8:]
 y_training, y_test = ys[:8], ys[8:]
@@ -48,7 +48,7 @@ Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se pu
 """
 
 tiempo_inicial = time() 
-model.fit(x_training,y_training, epochs=50)
+model.fit(x_training,y_training, epochs=5000,verbose=0,workers=10,use_multiprocessing=True)
 tiempo_final = time() 
 tiempo_ejecucion = tiempo_final - tiempo_inicial
 print("Training time:{}".format(tiempo_ejecucion))
