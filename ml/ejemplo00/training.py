@@ -49,7 +49,7 @@ Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se pu
 
 tiempo_inicial = time() 
 print("Init Training")
-model.fit(x_training,y_training, epochs=5000,verbose=0,workers=10,use_multiprocessing=True)
+model.fit(x_training,y_training, epochs=5000,verbose=1,workers=10,use_multiprocessing=True)
 print("End Training")
 tiempo_final = time() 
 tiempo_ejecucion = tiempo_final - tiempo_inicial
