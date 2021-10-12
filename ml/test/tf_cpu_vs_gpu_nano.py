@@ -1,6 +1,7 @@
 import tensorflow as tf
 import time
 import matplotlib.pyplot as plt
+from tensorflow.python.client import device_lib
 
 cpu_times = []
 
@@ -21,6 +22,7 @@ for size in sizes:
 
 gpu_times = []
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+print(device_lib.list_local_devices())
 
 tf.debugging.set_log_device_placement(True)
 sizes = [1, 10, 100, 500, 1000, 2000]

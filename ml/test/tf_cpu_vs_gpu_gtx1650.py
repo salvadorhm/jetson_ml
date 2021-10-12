@@ -1,6 +1,7 @@
 import tensorflow as tf
 import time
 import matplotlib.pyplot as plt
+from tensorflow.python.client import device_lib
 
 cpu_times = []
 
@@ -21,6 +22,7 @@ for size in sizes:
 
 gpu_times = []
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+print(device_lib.list_local_devices())
 
 tf.debugging.set_log_device_placement(True)
 sizes = [1, 10, 100, 500, 1000, 2000]
@@ -42,7 +44,7 @@ ax.plot(sizes, cpu_times, label='CPU')
 plt.xlabel('MATRIX SIZE')
 plt.ylabel('TIME (sec)')
 plt.legend()
-plt.title("CPU vs GPU Nvidia GTX1650")
+plt.title("CPU vs GPU NVIDIA GeForce GTX 1650, compute capability: 7.5")
 plt.savefig("cpu_gpu_gtx1650.png")
 
 print("PLOT")
