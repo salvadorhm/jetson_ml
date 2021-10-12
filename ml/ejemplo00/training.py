@@ -2,10 +2,10 @@
 """
 ## Importar las librerias
 """
-
+import tensorflow as tf
 from tensorflow import keras
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from time import time
 
 print(keras.__version__) # Imprime la versión de keras
@@ -26,8 +26,8 @@ model.compile(optimizer='sgd', loss="mean_squared_error", metrics=["accuracy"])
 En este ejemplo los datos de muestra se optienen de la funcion y = x * 2
 """
 
-xs = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
-ys = np.genfromtxt('datos1.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
+xs = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=0,dtype=float)
+ys = np.genfromtxt('datos0.csv', delimiter=',', skip_header=1 , usecols=1,dtype=float)
 
 x_training, x_test = xs[:8], xs[8:]
 y_training, y_test = ys[:8], ys[8:]
@@ -35,25 +35,25 @@ y_training, y_test = ys[:8], ys[8:]
 print(x_training)
 print(x_test)
 
-plt.plot(xs,ys)
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('Demo')
-plt.savefig('foo.png')
-plt.show()
+#plt.plot(xs,ys)
+#plt.xlabel('x')
+#plt.ylabel('y')
+#plt.title('Demo')
+#plt.savefig('foo.png')
+#plt.show()
 
 """# Entrenamiento
 
 Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se puede ver que el valor de perdida es más cercano a 0.
 """
-
-tiempo_inicial = time() 
-print("Init Training")
-model.fit(x_training,y_training, epochs=5000,verbose=1,workers=10,use_multiprocessing=True)
-print("End Training")
-tiempo_final = time() 
-tiempo_ejecucion = tiempo_final - tiempo_inicial
-print("Training time:{}".format(tiempo_ejecucion))
+with tf.device('/device:GPU:0'):
+    tiempo_inicial = time() 
+    print("Init Training")
+    model.fit(x_training,y_training, epochs=5000,verbose=1,workers=10,use_multiprocessing=True)
+    print("End Training")
+    tiempo_final = time() 
+    tiempo_ejecucion = tiempo_final - tiempo_inicial
+    print("Training time:{}".format(tiempo_ejecucion))
 
 """# Predicciones
 Después de que se entreno el modelo, guardamos el modelo para usarlo despues

@@ -40,7 +40,11 @@ ys = np.array([2.0,4.0,6.0,8.0,10.0,12.0], dtype=float)
 
 Se realiza el entrenamiento del modelo 500 epocas (veces), y en cada epoca se puede ver que el valor de perdida es más cercano a 0.
 """
+<<<<<<< HEAD
 with tf.device('/device:GPU:0'):
+=======
+with tf.device('/device:XLA_GPU:0'):
+>>>>>>> 2528d22214ae2ccdf5f295110aae542e58daff29
 	tiempo_inicial = time() 
 	model.fit(xs,ys, epochs=5000,verbose=0)
 	tiempo_final = time() 
