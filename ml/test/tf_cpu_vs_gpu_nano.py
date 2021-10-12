@@ -44,7 +44,7 @@ ax.plot(sizes, cpu_times, label='CPU')
 plt.xlabel('MATRIX SIZE')
 plt.ylabel('TIME (sec)')
 plt.legend()
-plt.title("CPU vs GPU Nvidia Jetson Nano 2GB")
+plt.title("CPU vs GPU NVIDIA Tegra X1, compute capability: 5.3")
 plt.savefig("cpu_gpu_jetson.png")
 
 print("PLOT")
