@@ -47,4 +47,7 @@ plt.legend()
 plt.title("CPU vs GPU NVIDIA GeForce GTX 1650, compute capability: 7.5")
 plt.savefig("cpu_gpu_gtx1650.png")
 
+
+print(cpu_times)
+print(gpu_times)
 print("PLOT")
